@@ -6,6 +6,7 @@ import SaberMais from "./pages/SaberMais";
 import Contato from "./pages/Contato";
 import Destinos from "./pages/Destinos";
 import ReservaForm from "./pages/ReservaForm";
+import MinhasReservas from "./pages/MinhasReservas";
 
 const App = () => {
   return (
@@ -17,6 +18,7 @@ const App = () => {
         <Route path="/contato" element={<Contato />} />
         <Route path="/destinos" element={<Destinos />} />
         <Route path="/reserva" element={<ReservaForm />} />
+        <Route path="/minhasreservas" element={<MinhasReservas />} />
       </Routes>
     </Router>
   );

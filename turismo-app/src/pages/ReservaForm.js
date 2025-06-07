@@ -18,10 +18,7 @@ const ReservaForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert(
-      `Reserva feita para ${formData.destino} no nome de ${formData.nome}!`
-    );
-    navigate("/destinos");
+    navigate("/minhasreservas", { state: { destino: formData.destino } });
   };
 
   return (
