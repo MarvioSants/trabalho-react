@@ -1,0 +1,23 @@
+.home-container {
+  text-align: center;
+  padding: 50px;
+  background-color: #ffffff;
+}
+
+nav {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+nav a {
+  text-decoration: none;
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+}
+
+nav a:hover {
+  background-color: #388e3c;
+}
