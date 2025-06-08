@@ -1,12 +1,14 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "./pages/Login";
-import Home from "./pages/Home";
+import Home from "./pages/home/Home";
 import SaberMais from "./pages/SaberMais";
 import Contato from "./pages/Contato";
 import Destinos from "./pages/Destinos";
 import ReservaForm from "./pages/ReservaForm";
 import MinhasReservas from "./pages/MinhasReservas";
+
+let current_page = "";
 
 const App = () => {
   return (
