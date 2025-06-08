@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap');
+
+.reservaContainer {
+  max-width: 500px;
+  margin: 60px auto;
+  padding: 40px 30px;
+  background: #f0fdf4;
+  border-radius: 16px;
+  box-shadow: 0 10px 24px rgba(46, 125, 50, 0.15);
+  text-align: center;
+  font-family: 'Nunito', sans-serif;
+}
+
+.reservaContainer h2 {
+  color: #2e7d32;
+  font-size: 1.8rem;
+  margin-bottom: 24px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+
+input,
+select {
+  padding: 12px 14px;
+  border: 1.5px solid #a5d6a7;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: inherit;
+  background-color: #ffffff;
+  box-shadow: 0 2px 6px rgba(255, 255, 255, 0.08);
+  transition: border-color 0.3s ease;
+}
+
+input:focus,
+select:focus {
+  border-color: #2e7d32;
+  outline: none;
+}
+
+button {
+  background-color: #388e3c;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+  background-color: #2e7d32;
+  transform: translateY(-1px);
+}

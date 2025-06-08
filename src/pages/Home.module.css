@@ -1,0 +1,55 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap');
+
+.home-container {
+  text-align: center;
+  padding: 60px 30px;
+  background: linear-gradient(
+      rgba(255, 255, 255, 0.9),
+      rgba(255, 255, 255, 0.9)
+    ),
+    url('https://images.unsplash.com/photo-1528150177508-3c4f1b7c9f45?auto=format&fit=crop&w=1350&q=80');
+  background-size: cover;
+  background-position: center;
+  font-family: 'Nunito', sans-serif;
+  min-height: 100vh;
+  color: #ffffff;
+}
+
+.home-container h1 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  color: #ffffff;
+}
+
+.home-container p {
+  font-size: 1.2rem;
+  max-width: 700px;
+  margin: 0 auto 30px;
+  color: #ffffff;
+  line-height: 1.6;
+}
+
+nav {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-top: 30px;
+}
+
+nav a {
+  text-decoration: none;
+  background-color: #388e3c;
+  color: white;
+  padding: 12px 22px;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 8px rgb(255, 255, 255);
+  font-family: 'Nunito', sans-serif;
+}
+
+nav a:hover {
+  background-color: #2e7d32;
+  transform: translateY(-2px);
+}

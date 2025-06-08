@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap');
+
+.destinosContainer {
+  max-width: 960px;
+  margin: 40px auto;
+  padding: 30px 20px;
+  text-align: center;
+  font-family: 'Nunito', sans-serif;
+  color: #2e2e2e;
+}
+
+.destinosContainer h2 {
+  font-size: 2.2rem;
+  margin-bottom: 25px;
+  color: #ffffff;
+}
+
+.listaDestinos {
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.destinoCard {
+  background: #f1fdf2;
+  padding: 20px;
+  border-radius: 18px;
+  box-shadow: 0 6px 16px rgba(46, 125, 50, 0.15);
+  text-align: center;
+  width: 240px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  border: 1px solid #c5e1a5;
+}
+
+.destinoCard:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 28px rgba(46, 125, 50, 0.25);
+  background-color: #eafbea;
+}
+
+.destinoCard img {
+  width: 100%;
+  height: 160px;
+  border-radius: 14px;
+  object-fit: cover;
+  margin-bottom: 16px;
+  transition: transform 0.3s ease;
+}
+
+.destinoCard:hover img {
+  transform: scale(1.05);
+}
+
+.destinoCard h3 {
+  margin-bottom: 10px;
+  font-size: 1.25rem;
+  color: #33691e;
+}
+
+.destinoCard p {
+  font-size: 0.95rem;
+  color: #4e5d4e;
+}
+
+button {
+  background-color: #388e3c;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  border: none;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+  font-family: 'Nunito', sans-serif;
+  margin-top: 12px;
+  width: 100%;
+}
+
+button:hover {
+  background-color: #2e7d32;
+}
+
+.reservaConfirmada {
+  margin-top: 30px;
+  padding: 20px;
+  background: #dcedc8;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(76, 175, 80, 0.25);
+  font-weight: 600;
+  color: #256029;
+  font-size: 1.1rem;
+  font-family: 'Nunito', sans-serif;
+}

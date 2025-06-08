@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap');
+
+.reservasContainer {
+  max-width: 700px;
+  margin: 40px auto;
+  padding: 30px 20px;
+  background-color: #f0fdf4;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(46, 125, 50, 0.15);
+  font-family: 'Nunito', sans-serif;
+  text-align: center;
+}
+
+.reservasContainer h2 {
+  color: #2e7d32;
+  font-size: 1.8rem;
+  margin-bottom: 24px;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #e8f5e9;
+  padding: 14px 18px;
+  border-radius: 10px;
+  margin-bottom: 12px;
+  font-size: 1rem;
+  box-shadow: 0 4px 8px rgba(46, 125, 50, 0.1);
+  transition: background 0.3s ease;
+}
+
+li:hover {
+  background: #d0f0d8;
+}
+
+li span {
+  color: #33691e;
+  font-weight: 600;
+}
+
+button {
+  background-color: #d32f2f;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  cursor: pointer;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+  background-color: #b71c1c;
+  transform: scale(1.05);
+}
