@@ -8,6 +8,8 @@ import Destinos from "./pages/Destinos";
 import ReservaForm from "./pages/ReservaForm";
 import MinhasReservas from "./pages/MinhasReservas";
 
+let current_page = "";
+
 const App = () => {
   return (
     <Router>

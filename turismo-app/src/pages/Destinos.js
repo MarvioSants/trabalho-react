@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./Destinos.module.css";
+import App from "../App";
 
 const destinosDisponiveis = [
   {
@@ -24,13 +25,17 @@ const destinosDisponiveis = [
 ];
 
 const Destinos = () => {
+  
   const navigate = useNavigate();
 
   const reservarDestino = (destino) => {
     navigate("/reserva", { state: { destino } });
   };
 
+  
+
   return (
+    
     <div className={styles.destinosContainer}>
       
       <h2>Escolha o seu próximo destino!</h2>
@@ -47,7 +52,7 @@ const Destinos = () => {
               <p>À partir de</p>
               <h3>{destino.precos}</h3>
             </div>
-            <button onClick={() => reservarDestino(destino)} className={styles.btnReservar}>Reservar agora!</button>
+            <button onClick={() =>  reservarDestino(destino)} className={styles.btnReservar}>Reservar agora!</button>
           </div>
         ))}
         
