@@ -1,4 +1,5 @@
 .home-container {
+  position: fixed;
   text-align: center;
   padding: 50px;
   background-color: #ffffff;

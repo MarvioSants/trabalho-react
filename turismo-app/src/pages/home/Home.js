@@ -4,7 +4,7 @@ import styles from "./Home.module.css"; // Certifique-se de criar este arquivo C
 
 const Home = () => {
   return (
-    <div className="home-container">
+    <header className="home-container">
       <h1>Turismo Sustentável/ O lado que você não conhece</h1>
       <nav>
         <Link to="/destinos">Destinos</Link>
@@ -12,7 +12,8 @@ const Home = () => {
         <Link to="/contato">Contato</Link>
         <Link to="/login">Login</Link>
       </nav>
-    </div>
+    </header>
+    
   );
 };
 
