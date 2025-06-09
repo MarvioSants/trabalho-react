@@ -1,44 +1,60 @@
 import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
 import styles from "./MinhasReservas.module.css";
 
 const MinhasReservas = () => {
-  const location = useLocation();
-  const novaReserva = location.state || null;
   const [reservas, setReservas] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const reservasSalvas = JSON.parse(localStorage.getItem("reservas")) || [];
+    const fetchReservas = async () => {
+      try {
+        const response = await fetch("http://localhost:3000/reservas");
+        const data = await response.json();
+        setReservas(data);
+      } catch (error) {
+        console.error("Erro ao buscar reservas:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-    if (
-      novaReserva &&
-      !reservasSalvas.some((res) => res.destino === novaReserva.destino)
-    ) {
-      reservasSalvas.push(novaReserva);
-      localStorage.setItem("reservas", JSON.stringify(reservasSalvas));
+    fetchReservas();
+  }, []);
+
+  const cancelarReserva = async (id) => {
+    try {
+      const response = await fetch(`http://localhost:3000/reservas/${id}/cancelar`, {
+        method: "PUT",
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        setReservas((prev) =>
+          prev.map((res) => (res._id === id ? data.reserva : res))
+        );
+      } else {
+        alert("Erro ao cancelar a reserva.");
+      }
+    } catch (error) {
+      console.error("Erro ao cancelar:", error);
     }
-
-    setReservas(reservasSalvas);
-  }, [novaReserva]);
-
-  const cancelarReserva = (index) => {
-    const novasReservas = reservas.filter((_, i) => i !== index);
-    localStorage.setItem("reservas", JSON.stringify(novasReservas));
-    setReservas(novasReservas);
   };
 
   return (
     <div className={styles.reservasContainer}>
       <h2>Minhas Reservas</h2>
-      {reservas.length === 0 ? (
+      {loading ? (
+        <p>Carregando reservas...</p>
+      ) : reservas.length === 0 ? (
         <p>Nenhuma reserva encontrada.</p>
       ) : (
         <ul>
-          {reservas.map((reserva, index) => (
-            <li key={index}>
-              {reserva.destino} - {reserva.nome} - {reserva.data} -{" "}
-              {reserva.status}
-              <button onClick={() => cancelarReserva(index)}>Cancelar</button>
+          {reservas.map((reserva) => (
+            <li key={reserva._id}>
+              <strong>{reserva.nome}</strong> - {reserva.destino} - {reserva.data} - Pessoas: {reserva.pessoas} - <em>Status: {reserva.status}</em>
+              {reserva.status !== "Cancelado" && (
+                <button onClick={() => cancelarReserva(reserva._id)}>Cancelar</button>
+              )}
             </li>
           ))}
         </ul>

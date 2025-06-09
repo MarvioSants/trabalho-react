@@ -16,9 +16,25 @@ const ReservaForm = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    navigate("/minhasreservas", { state: { destino: formData.destino } });
+
+    try {
+      const response = await fetch("http://localhost:3000/reservas", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        const reservaCriada = await response.json();
+        navigate("/minhasreservas");
+      } else {
+        alert("Erro ao enviar reserva.");
+      }
+    } catch (error) {
+      console.error("Erro ao enviar reserva:", error);
+    }
   };
 
   return (
@@ -26,30 +42,13 @@ const ReservaForm = () => {
       <h2>Preencha os dados para sua reserva</h2>
       <form onSubmit={handleSubmit}>
         <label>Nome:</label>
-        <input
-          type="text"
-          name="nome"
-          value={formData.nome}
-          onChange={handleChange}
-          required
-        />
+        <input type="text" name="nome" value={formData.nome} onChange={handleChange} required />
 
         <label>Email:</label>
-        <input
-          type="email"
-          name="email"
-          value={formData.email}
-          onChange={handleChange}
-          required
-        />
+        <input type="email" name="email" value={formData.email} onChange={handleChange} required />
 
         <label>Destino:</label>
-        <select
-          name="destino"
-          value={formData.destino}
-          onChange={handleChange}
-          required
-        >
+        <select name="destino" value={formData.destino} onChange={handleChange} required>
           <option value="">Selecione um destino</option>
           <option value="Amazônia">Amazônia</option>
           <option value="Chapada dos Veadeiros">Chapada dos Veadeiros</option>
@@ -57,23 +56,10 @@ const ReservaForm = () => {
         </select>
 
         <label>Data da viagem:</label>
-        <input
-          type="date"
-          name="data"
-          value={formData.data}
-          onChange={handleChange}
-          required
-        />
+        <input type="date" name="data" value={formData.data} onChange={handleChange} required />
 
         <label>Quantidade de pessoas:</label>
-        <input
-          type="number"
-          name="pessoas"
-          min="1"
-          value={formData.pessoas}
-          onChange={handleChange}
-          required
-        />
+        <input type="number" name="pessoas" min="1" value={formData.pessoas} onChange={handleChange} required />
 
         <button type="submit">Confirmar Reserva</button>
       </form>
