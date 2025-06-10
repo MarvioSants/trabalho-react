@@ -69,6 +69,23 @@ app.put("/reservas/:id/cancelar", async (req, res) => {
   }
 });
 
+app.put("/reservas/:id/cancelar", async (req, res) => {
+  try {
+    const reserva = await Reserva.findByIdAndUpdate(
+      req.params.id,
+      { status: "Cancelado" },
+      { new: true }
+    );
+    if (!reserva) {
+      return res.status(404).json({ mensagem: "Reserva não encontrada" });
+    }
+    res.json({ mensagem: "Reserva cancelada com sucesso!", reserva });
+  } catch (error) {
+    res.status(500).json({ mensagem: "Erro ao cancelar reserva" });
+  }
+});
+
+
 app.listen(PORT, () => {
   console.log(`Servidor rodando na porta ${PORT}`);
 });

@@ -7,6 +7,7 @@ import Contato from "./pages/Contato";
 import Destinos from "./pages/Destinos";
 import ReservaForm from "./pages/ReservaForm";
 import MinhasReservas from "./pages/MinhasReservas";
+import EditReserva from "./pages/EditReserva"
 
 let current_page = "";
 
@@ -21,6 +22,7 @@ const App = () => {
         <Route path="/destinos" element={<Destinos />} />
         <Route path="/reserva" element={<ReservaForm />} />
         <Route path="/minhasreservas" element={<MinhasReservas />} />
+        <Route path="/Editreserva" element={<EditReserva />} />
       </Routes>
     </Router>
   );

@@ -25,6 +25,7 @@ const Reservas = () => {
           <li key={index}>
             {reserva}
             <button onClick={() => cancelarReserva(index)}>Cancelar</button>
+            <button>Editar</button>
           </li>
         ))}
       </ul>
