@@ -8,6 +8,7 @@ const Home = () => {
       <h1>O TURÍSMO QUE VOCÊ NÃO CONHECE</h1>
       <nav>
         <Link to="/destinos">Destinos</Link>
+        <Link to="/minhasreservas">Minhas Reservas</Link>
         <Link to="/sabermais">Saber Mais</Link>
         <Link to="/contato">Contato</Link>
         <Link to="/login">Login</Link>

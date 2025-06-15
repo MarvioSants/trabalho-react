@@ -26,21 +26,25 @@ const ReservaForm = () => {
         body: JSON.stringify(formData),
       });
 
-      if (response.ok) {
-        const reservaCriada = await response.json();
-        navigate("/minhasreservas");
-      } else {
-        alert("Erro ao enviar reserva.");
-      }
+      if (!response.ok) throw new Error("Erro ao salvar reserva.");
+
+      const reserva = await response.json();
+
+      navigate("/minhasreservas", {
+        state: {
+          popupMensagem: `Reserva confirmada para ${reserva.destino} em ${reserva.data}.`,
+        },
+      });
     } catch (error) {
-      console.error("Erro ao enviar reserva:", error);
+      alert("Erro ao confirmar reserva: " + error.message);
     }
   };
 
   return (
-    <div className={styles.reservaContainer}>
-      <h2>Preencha os dados para sua reserva</h2>
-      <form onSubmit={handleSubmit}>
+    <div className={styles.container}>
+      <form className={styles.form} onSubmit={handleSubmit}>
+        <h2 className={styles.titulo}>Preencha os dados para sua reserva</h2>
+
         <label>Nome:</label>
         <input type="text" name="nome" value={formData.nome} onChange={handleChange} required />
 
@@ -53,6 +57,9 @@ const ReservaForm = () => {
           <option value="Amazônia">Amazônia</option>
           <option value="Chapada dos Veadeiros">Chapada dos Veadeiros</option>
           <option value="Fernando de Noronha">Fernando de Noronha</option>
+          <option value="Pantanal">Pantanal</option>
+          <option value="Serra Gaúcha">Serra Gaúcha</option>
+          <option value="Lençóis Maranhenses">Lençóis Maranhenses</option>
         </select>
 
         <label>Data da viagem:</label>
@@ -61,7 +68,8 @@ const ReservaForm = () => {
         <label>Quantidade de pessoas:</label>
         <input type="number" name="pessoas" min="1" value={formData.pessoas} onChange={handleChange} required />
 
-        <button type="submit">Confirmar Reserva</button>
+        <button type="submit" className={styles.botaoConfirmar}>Confirmar Reserva</button>
+        <button type="button" className={styles.botaoVoltar} onClick={() => navigate("/")}>← Voltar</button>
       </form>
     </div>
   );

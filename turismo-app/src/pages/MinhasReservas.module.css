@@ -1,31 +1,108 @@
-.reservasContainer {
+.container {
+  max-width: 700px;
+  margin: 40px auto;
+  padding: 30px 20px;
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+  font-family: 'Nunito', sans-serif;
   text-align: center;
+}
+
+.titulo {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #333;
+  background-color: #000;
+  color: #fff;
+  padding: 12px;
+  border-radius: 8px;
+}
+
+.popup {
+  background-color: #e0f7fa;
+  border: 2px solid #26c6da;
+  color: #006064;
   padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  font-size: 1.1rem;
+  font-weight: 600;
 }
 
-ul {
-  list-style: none;
-  padding: 0;
+.botaoFechar {
+  margin-top: 12px;
+  padding: 10px 20px;
+  background-color: #006064;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
 }
 
-li {
-  display: flex;
-  justify-content: space-between;
-  background: #e8f5e9;
-  padding: 10px;
-  border-radius: 5px;
-  margin-bottom: 10px;
+.botaoFechar:hover {
+  background-color: #004d4d;
 }
 
-button {
-  background-color: #e53935;
+.reservasVazias {
+  padding: 40px 0;
+  font-size: 1.1rem;
+  color: #555;
+}
+
+.botaoVoltar {
+  margin-top: 30px;
+  padding: 10px 24px;
+  font-size: 1rem;
+  font-weight: bold;
+  background-color: #333;
   color: white;
   border: none;
-  padding: 5px 10px;
+  border-radius: 10px;
   cursor: pointer;
-  border-radius: 5px;
 }
 
-button:hover {
-  background-color: #b71c1c;
+.botaoVoltar:hover {
+  background-color: #555;
 }
+
+.popupOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.popupBox {
+  background-color: #fff;
+  padding: 30px 40px;
+  border-radius: 16px;
+  text-align: center;
+  max-width: 400px;
+  width: 90%;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+  z-index: 11;
+}
+
+.botaoFechar {
+  margin-top: 20px;
+  padding: 10px 24px;
+  font-weight: bold;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.botaoFechar:hover {
+  background-color: #555;
+}
+

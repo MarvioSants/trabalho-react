@@ -1,11 +1,18 @@
 import React, { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import styles from "./MinhasReservas.module.css";
 
-import { useNavigate } from 'react-router-dom';
-
 const MinhasReservas = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const [popupMensagem, setPopupMensagem] = useState("");
   const [reservas, setReservas] = useState([]);
-  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (location.state?.popupMensagem) {
+      setPopupMensagem(location.state.popupMensagem);
+    }
+  }, [location.state]);
 
   useEffect(() => {
     const fetchReservas = async () => {
@@ -15,16 +22,16 @@ const MinhasReservas = () => {
         setReservas(data);
       } catch (error) {
         console.error("Erro ao buscar reservas:", error);
-      } finally {
-        setLoading(false);
       }
     };
 
     fetchReservas();
   }, []);
 
-  
-  const navigate = useNavigate();
+  const fecharPopup = () => {
+    setPopupMensagem("");
+    window.history.replaceState({}, document.title);
+  };
 
   const cancelarReserva = async (id) => {
     try {
@@ -32,68 +39,55 @@ const MinhasReservas = () => {
         method: "PUT",
       });
 
-      if (response.ok) {
-        const data = await response.json();
-        setReservas((prev) =>
-          prev.map((res) => (res._id === id ? data.reserva : res))
-        );
-      } else {
-        alert("Erro ao cancelar a reserva.");
-      }
+      const data = await response.json();
+      setReservas((prev) =>
+        prev.map((res) => (res._id === id ? data.reserva : res))
+      );
     } catch (error) {
-      console.error("Erro ao cancelar:", error);
+      alert("Erro ao cancelar reserva.");
     }
-  };
-
-    // Atualiza campos do formulário
-    const atualizarReserva = async (id) => {
-    try {
-      const response = await fetch(`http://localhost:3000/reservas/${id}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
-
-      if (response.ok) {
-        const data = await response.json();
-        setReservas((prev) =>
-          prev.map((res) => (res._id === id ? data.reserva : res))
-        );
-        setEditando(null); // Sai do modo edição
-      } else {
-        alert("Erro ao atualizar a reserva.");
-      }
-    } catch (error) {
-      console.error("Erro ao editar:", error);
-    }
-  };
-  const editRoute = () => {
-    navigate('/editreserva');
   };
 
   return (
-    <div className={styles.reservasContainer}>
-      <h2>Minhas Reservas</h2>
-      {loading ? (
-        <p>Carregando reservas...</p>
-      ) : reservas.length === 0 ? (
-        <p>Nenhuma reserva encontrada.</p>
+    <div className={styles.container}>
+      <h2 className={styles.titulo}>Minhas Reservas</h2>
+
+      {popupMensagem && (
+        <div className={styles.popupOverlay}>
+          <div className={styles.popupBox}>
+            <p>{popupMensagem}</p>
+            <button onClick={fecharPopup} className={styles.botaoFechar}>
+              Fechar
+            </button>
+          </div>
+        </div>
+      )}
+
+      {reservas.length === 0 ? (
+        <div className={styles.reservasVazias}>
+          <p>Nenhuma reserva cadastrada.</p>
+        </div>
       ) : (
-        <ul>
+        <ul className={styles.listaReservas}>
           {reservas.map((reserva) => (
-            <li key={reserva._id}>
-              <strong>{reserva.nome}</strong> - {reserva.destino} - {reserva.data} - Pessoas: {reserva.pessoas} - <em>Status: {reserva.status}</em>
-              {reserva.status !== "Cancelado" && (<button onClick={editRoute}>Editar</button>)}
-              {reserva.status !== "Cancelado" && (
-                <button onClick={() => cancelarReserva(reserva._id)}>Cancelar</button>
-              )}
-              
+            <li key={reserva._id} className={styles.reservaItem}>
+              <strong>{reserva.destino}</strong> - {reserva.data} <br />
+              <em>Status:</em> {reserva.status} <br />
+              <button
+                onClick={() => cancelarReserva(reserva._id)}
+                disabled={reserva.status === "Cancelado"}
+                className={styles.botaoCancelar}
+              >
+                Cancelar
+              </button>
             </li>
           ))}
         </ul>
       )}
+
+      <button onClick={() => navigate("/")} className={styles.botaoVoltar}>
+        ← Voltar
+      </button>
     </div>
   );
 };
